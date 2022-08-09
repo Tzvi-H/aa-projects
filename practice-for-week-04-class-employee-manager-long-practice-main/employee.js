@@ -8,6 +8,13 @@ class Employee {
       manager.addEmployee(this);
     }
   }
+
+  calculateBonus(multiplier) {
+    return this.salary * multiplier;
+  }
 }
+
+const raph = new Employee("Raphael", 90000, "Ninja");
+const donny = new Employee("Donatello", 85000, "Grasshopper");
 
 module.exports = Employee;
