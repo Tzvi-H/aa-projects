@@ -25,21 +25,6 @@ class TTT {
 
   static checkWin(grid) {
     if (
-      (grid.some((row) => row.every((piece) => piece === "X")) ||
-        (grid[0][0] === "X" && grid[1][0] === "X" && grid[2][0] === "X") ||
-        (grid[0][1] === "X" && grid[1][1] === "X" && grid[2][1] === "X") ||
-        (grid[0][2] === "X" && grid[1][2] === "X" && grid[2][2] === "X") ||
-        (grid[0][2] === "X" && grid[1][1] === "X" && grid[2][0] === "X") ||
-        (grid[0][0] === "X" && grid[1][1] === "X" && grid[2][2] === "X")) &&
-      (grid.some((row) => row.every((piece) => piece === "O")) ||
-        (grid[0][0] === "O" && grid[1][0] === "O" && grid[2][0] === "O") ||
-        (grid[0][1] === "O" && grid[1][1] === "O" && grid[2][1] === "O") ||
-        (grid[0][2] === "O" && grid[1][2] === "O" && grid[2][2] === "O") ||
-        (grid[0][2] === "O" && grid[1][1] === "O" && grid[2][0] === "O") ||
-        (grid[0][0] === "O" && grid[1][1] === "O" && grid[2][2] === "O"))
-    ) {
-      return "T";
-    } else if (
       grid.some((row) => row.every((piece) => piece === "X")) ||
       (grid[0][0] === "X" && grid[1][0] === "X" && grid[2][0] === "X") ||
       (grid[0][1] === "X" && grid[1][1] === "X" && grid[2][1] === "X") ||
@@ -57,6 +42,8 @@ class TTT {
       (grid[0][0] === "O" && grid[1][1] === "O" && grid[2][2] === "O")
     ) {
       return "O";
+    } else if (grid.every((row) => row.every((position) => position !== " "))) {
+      return "T";
     } else {
       return false;
     }
