@@ -13,7 +13,7 @@
 
 const addZeros = (str, newLength) => {
   if (str.length < newLength) {
-    let newStr = str.padStart(newLength, '0');
+    let newStr = str.padStart(newLength, "0");
     return newStr;
   }
 };
