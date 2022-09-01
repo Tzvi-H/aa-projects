@@ -114,9 +114,16 @@ function deleteNodeBST(rootNode, target) {
   //   set the value to its in-order predecessor, then delete the predecessor
   // Case 3: One child:
   //   Make the parent point to the child
-  const parent = getParentNode(rootNode, target);
+  if (rootNode.val === target) {
+    const predecessorValue = inOrderPredecessor(rootNode, rootNode.val);
+    deleteNodeBST(rootNode, predecessorValue);
+    rootNode.val = predecessorValue;
+    return;
+  }
 
-  if (!parent) return undefined;
+  const parent = getParentNode(rootNode, target);
+  if (!parent && rootNode.val !== target) return undefined;
+
   let child;
   let direction;
   if (parent.left && parent.left.val === target) {

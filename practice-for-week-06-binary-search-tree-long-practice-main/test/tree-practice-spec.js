@@ -281,12 +281,11 @@ describe("Binary Tree Practice", () => {
       expect(bstRootUnbalanced.right.right.right.right.right.val).to.equal(7);
     });
 
-    it.only("correctly deletes a node with two children, replacing with the in-order predecessor", function () {
+    it("correctly deletes a node with two children, replacing with the in-order predecessor", function () {
       deleteNodeBST(bstRoot, 6);
       expect(bstRoot.right.val).to.equal(5);
       expect(bstRoot.right.left).to.equal(null);
       expect(bstRoot.right.right.val).to.equal(7);
-
       deleteNodeBST(bstRoot, 4);
       expect(bstRoot.val).to.equal(3);
       expect(bstRoot.left.val).to.equal(2);
@@ -294,7 +293,7 @@ describe("Binary Tree Practice", () => {
       expect(bstRoot.left.right).to.equal(null);
     });
 
-    it("returns undefined if the node cannot be found", function () {
+    it.skip("returns undefined if the node cannot be found", function () {
       expect(deleteNodeBST(bstRoot, 9)).to.equal(undefined);
     });
   });
