@@ -1,0 +1,84 @@
+body {
+  font-family: "Segoe UI", "Roboto", "Noto Sans", "Ubuntu", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  margin: 0;
+}
+
+.header-nav__container {
+  background-color: #026aa7;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 4px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Supplied CSS follows. */
+.header-nav__group {
+  display: flex;
+}
+
+#alerts {
+  background-color: red;
+}
+
+@media screen and (max-width: 730px) {
+  /* Hide the header search input field. */
+  /* Hide the "Boards" text, but leave the boards icon. */
+  #boards span {
+    display: none;
+  }
+
+  #search input {
+    display: none;
+  }
+}
+
+.header-nav__button {
+  display: inline-flex;
+  border-radius: 3px;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  align-items: center;
+  text-align: center;
+  background-color: hsla(0, 0%, 100%, 0.3);
+  box-shadow: none;
+  color: #fff;
+  line-height: 32px;
+  margin: 0 4px 0 0;
+  transition: 0.1s ease;
+  white-space: nowrap;
+  padding: 8px;
+  height: 20px;
+}
+
+.header-nav__button#search > input {
+  border-style: none;
+  border: none;
+  background-image: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.header-nav__button > .boards-label {
+  font-weight: 700;
+  padding-left: 4px;
+}
+
+.header-nav__trello-logo {
+  opacity: 0.5;
+  display: block;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  top: 5px;
+}
+
+.header-nav__button > i {
+  width: 24px;
+}
