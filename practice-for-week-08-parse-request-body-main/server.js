@@ -15,7 +15,11 @@ server = http.createServer((req, res) => {
   req.on("data", (data) => {
     reqBody += data;
   });
-  req.on("end", (data) => console.log(reqBody));
+  req.on("end", (data) => {
+    req.body = parseBody(reqBody);
+    console.log(req.body);
+    sendFormPage(req, res);
+  });
 });
 
 server.listen(port, () => console.log(`Server is listening on port ${port}`));

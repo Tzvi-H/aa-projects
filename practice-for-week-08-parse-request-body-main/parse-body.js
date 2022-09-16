@@ -1,25 +1,47 @@
 function firstStep(input) {
-  // Your code here
+  return input.split("&");
 }
 
 function secondStep(input) {
-  // Your code here
+  return input.map((keyValue) => {
+    return keyValue.split("=");
+  });
 }
 
 function thirdStep(input) {
-  // Your code here
+  return input.map((keyValue) => {
+    const [key, value] = keyValue;
+    return [key.replace(/\+/g, " "), value.replace(/\+/g, " ")];
+  });
 }
 
 function fourthStep(input) {
-  // Your code here
+  return input.map((keyValue) => {
+    const [key, value] = keyValue;
+    return [decodeURIComponent(key), decodeURIComponent(value)];
+  });
 }
 
 function fifthStep(input) {
-  // Your code here
+  return input.reduce((acc, keyValue) => {
+    const [key, value] = keyValue;
+    acc[key] = value;
+    return acc;
+  }, {});
 }
 
 function parseBody(str) {
-  // Your code here
+  if (str.length === 0) {
+    return {};
+  }
+
+  const step1 = firstStep(str);
+  const step2 = secondStep(step1);
+  const step3 = thirdStep(step2);
+  const step4 = fourthStep(step3);
+  const step5 = fifthStep(step4);
+
+  return step5;
 }
 
 /******************************************************************************/
@@ -31,5 +53,5 @@ module.exports = {
   thirdStep,
   fourthStep,
   fifthStep,
-  parseBody
+  parseBody,
 };
