@@ -115,6 +115,15 @@ const server = http.createServer((req, res) => {
       if (urlParts.length === 3) {
         const dogId = urlParts[2];
         const dog = dogs.find((dog) => dog.dogId == dogId);
+        if (!dog) {
+          const htmlPage = fs.readFileSync("./views/error.html", "utf-8");
+          const resBody = htmlPage.replace(/#{message}/g, "Dog Not Found");
+
+          res.statusCode = 404;
+          res.setHeader("Content-Type", "text/html");
+          res.write(resBody);
+          return res.end();
+        }
         const htmlTemplate = fs.readFileSync(
           "./views/dog-details.html",
           "utf-8"
@@ -152,6 +161,15 @@ const server = http.createServer((req, res) => {
       if (urlParts.length === 4 && urlParts[3] === "edit") {
         const dogId = urlParts[2];
         const dog = dogs.find((dog) => dog.dogId == dogId);
+        if (!dog) {
+          const htmlPage = fs.readFileSync("./views/error.html", "utf-8");
+          const resBody = htmlPage.replace(/#{message}/g, "Dog Not Found");
+
+          res.statusCode = 404;
+          res.setHeader("Content-Type", "text/html");
+          res.write(resBody);
+          return res.end();
+        }
         const htmlTemplate = fs.readFileSync("./views/edit-dog.html", "utf-8");
         const htmlPage = htmlTemplate
           .replace(/#{name}/g, dog.name)
@@ -172,7 +190,15 @@ const server = http.createServer((req, res) => {
       if (urlParts.length === 3) {
         const dogId = urlParts[2];
         const dog = dogs.find((dog) => dog.dogId == dogId);
+        if (!dog) {
+          const htmlPage = fs.readFileSync("./views/error.html", "utf-8");
+          const resBody = htmlPage.replace(/#{message}/g, "Dog Not Found");
 
+          res.statusCode = 404;
+          res.setHeader("Content-Type", "text/html");
+          res.write(resBody);
+          return res.end();
+        }
         const { name, age } = req.body;
         dog.name = name;
         dog.age = age;
