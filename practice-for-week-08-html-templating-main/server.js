@@ -172,7 +172,14 @@ const server = http.createServer((req, res) => {
       if (urlParts.length === 3) {
         const dogId = urlParts[2];
         const dog = dogs.find((dog) => dog.dogId == dogId);
-        // Your code here
+
+        const { name, age } = req.body;
+        dog.name = name;
+        dog.age = age;
+
+        res.statusCode = 302;
+        res.setHeader("Location", `/dogs/${dog.dogId}`);
+        return res.end();
       }
     }
 
