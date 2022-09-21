@@ -1,8 +1,8 @@
 function stretch() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve();
       console.log("done stretching");
+      resolve();
     }, 1000);
   });
 }
@@ -10,8 +10,8 @@ function stretch() {
 function runOnTreadmill() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve();
       console.log("done running on treadmill");
+      resolve();
     }, 500);
   });
 }
@@ -19,17 +19,19 @@ function runOnTreadmill() {
 function liftWeights() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve();
       console.log("done lifting weights");
+      resolve();
     }, 2000);
   });
 }
 
 function workout() {
-  stretch()
-    .then(runOnTreadmill)
-    .then(liftWeights)
-    .then(() => console.log("done working out"));
+  // refactor this code to use Promise.all
+  const workouts = [stretch(), runOnTreadmill(), liftWeights()];
+  const workoutsDone = Promise.all(workouts);
+  workoutsDone.then((workouts) => {
+    console.log("done working out");
+  });
 }
 
 /* ============================ TEST YOUR CODE ============================
@@ -40,7 +42,7 @@ output.
 
 workout();
 // should print out the following:
-// done stretching
 // done running on treadmill
+// done stretching
 // done lifting weights
 // done working out
