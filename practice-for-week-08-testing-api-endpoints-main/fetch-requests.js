@@ -22,4 +22,15 @@ fetch("/posts").then((response) => {
   components to the console.
 */
 
-// Your code here
+fetch("/posts", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    message: "New Post!",
+  }),
+}).then(async (res) => {
+  json = await res.json();
+  console.log(json);
+});
