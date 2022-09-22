@@ -10,8 +10,11 @@ Paste your code for fetch requests here once you finish each task.
 */
 
 // Your code here
-
-
+fetch("/posts").then((response) => {
+  response.json().then((json) => {
+    console.log(json);
+  });
+});
 
 /* =============================== Phase 2 ================================ */
 /*
