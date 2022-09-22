@@ -15,8 +15,35 @@ fetch("/products", {
 
 /* ============================== Phase 2 ============================== */
 
-// Your code here
+fetch("/products", {
+  method: "POST",
+  body: "name=Caribbean+Delight+Coffee&description=Made+by+Manatee+Coffee&price=11%2E99&categories=grocery",
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
+}).then((response) => {
+  console.log(response.status);
+  console.log(response.headers.get("Content-Type"));
+  console.log(response.url);
+  console.log(response.redirected);
+});
 
 /* ============================== Phase 3 ============================== */
 
-// Your code here
+fetch("/products", {
+  method: "POST",
+  body: new URLSearchParams({
+    name: "***Caribbean Delight Coffee***",
+    description: "Made by Manatee Coffee",
+    price: 11.99,
+    categories: "grocery",
+  }),
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
+}).then((response) => {
+  console.log(response.status);
+  console.log(response.headers.get("Content-Type"));
+  console.log(response.url);
+  console.log(response.redirected);
+});
