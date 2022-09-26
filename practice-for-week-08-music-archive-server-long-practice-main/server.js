@@ -366,6 +366,48 @@ const server = http.createServer((req, res) => {
       }
     }
 
+    // Edit a specified song by songId
+    // PUT/PATCH /songs/:id
+    if (
+      (req.method === "PUT" || req.method === "PATCH") &&
+      req.url.startsWith("/songs")
+    ) {
+      const urlParts = req.url.split("/");
+      if (urlParts.length === 3) {
+        const songId = urlParts[2];
+        const song = songs[songId];
+        const newSongName = req.body.name;
+
+        if (song && newSongName) {
+          song["name"] = newSongName;
+
+          const responseBody = JSON.stringify(song);
+
+          res.statusCode = 200;
+          res.setHeader("Content-Type", "application/json");
+
+          return res.end(responseBody);
+        }
+      }
+    }
+
+    // Delete a specified song by songId
+    // DELETE /songs/:id
+    if (req.method === "DELETE" && req.url.startsWith("/songs")) {
+      const urlParts = req.url.split("/");
+      if (urlParts.length === 3) {
+        const id = urlParts[2];
+        const song = songs[id];
+        if (song) {
+          delete songs[id];
+
+          res.statusCode = 204;
+
+          return res.end();
+        }
+      }
+    }
+
     res.statusCode = 404;
     res.setHeader("Content-Type", "application/json");
     res.write("Endpoint not found");
