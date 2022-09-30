@@ -62,7 +62,7 @@ const server = http.createServer((req, res) => {
     res.end();
   });
 });
-// Set the port to 5000
-const port = 5000;
-// Tell the port to listen for requests on localhost:5000
-server.listen(port, () => console.log("Web Storage API Practice is running on port", port));
+// Set the port to 3000
+const port = 3000;
+// Tell the port to listen for requests on localhost:3000
+server.listen(port, () => console.log("Cookies Practice is running on port", port));

@@ -1,42 +1,57 @@
-/* ================================ PHASE 1 ================================ */
+/* ============================== PHASE 1 + 2 ============================== */
 
-// For storing user's theme selection in the browser
+// For storing user's theme selection in cookies
 function storeTheme(themeName) {
-  localStorage.setItem("theme", themeName);
+  document.cookie = `themeName=${themeName};max-age=${30}`;
 }
 
-// For restoring theme, if selected by the user in the past
+// For restoring theme from cookies, if selected by the user in the past
 function restoreTheme() {
-  const theme = localStorage.getItem("theme");
-  if (theme) {
-    setTheme(theme);
+  const themeName = findCookieValue("themeName");
+  if (themeName) {
+    setTheme(themeName);
   }
 }
 
-// For clearing theme selection from the browser's storage (reset to default)
-
+// For clearing theme selection from cookies (reset to default)
 function clearTheme() {
-  localStorage.removeItem("theme");
+  document.cookie = "themeName=; expires=Thu, 01 Jan 1970 00:00:00 GMT;";
 }
 
-/* ================================ PHASE 2 ================================ */
+/* ================================ PHASE 3 ================================ */
 
-// For storing user's display name
+// For storing user's display name in cookies
 function storeName(displayName) {
-  sessionStorage.setItem("displayName", displayName);
+  document.cookie = `displayName=${displayName}`;
 }
 
-// For restoring user's display name, if set in the past
+// For restoring user's display name from cookies, if set in the past
 function restoreName() {
-  const displayName = sessionStorage.getItem("displayName");
+  const displayName = findCookieValue("displayName");
   if (displayName) {
     setInputValue("display-name", displayName);
   }
 }
 
-// For clearing user's display name from browser storage
+// For clearing user's display name from cookies
 function clearName() {
-  sessionStorage.removeItem("displayName");
+  document.cookie = "displayName=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+}
+
+function findCookieValue(key) {
+  const cookies = document.cookie.split(" ").map((cookie) => {
+    return cookie.split("=");
+  });
+  const cookie = cookies.find((cookie) => {
+    return Array.isArray(cookie) && cookie[0] === key;
+  });
+  if (cookie) {
+    let value = cookie[1];
+    if (value.endsWith(";")) {
+      value = value.slice(0, -1);
+    }
+    return value;
+  }
 }
 
 /* ========================================================================= */
