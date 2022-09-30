@@ -23,17 +23,20 @@ function clearTheme() {
 
 // For storing user's display name
 function storeName(displayName) {
-  // Your code here
+  sessionStorage.setItem("displayName", displayName);
 }
 
 // For restoring user's display name, if set in the past
 function restoreName() {
-  // Your code here
+  const displayName = sessionStorage.getItem("displayName");
+  if (displayName) {
+    setInputValue("display-name", displayName);
+  }
 }
 
 // For clearing user's display name from browser storage
 function clearName() {
-  // Your code here
+  sessionStorage.removeItem("displayName");
 }
 
 /* ========================================================================= */
