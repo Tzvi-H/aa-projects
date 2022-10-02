@@ -1,7 +1,7 @@
 {
-  "name": "express-route-order",
+  "name": "http-server-to-express-server",
   "version": "1.0.0",
-  "description": "Debug and correct route order in an Express application",
+  "description": "Converts an HTTP Server into an Express server",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
