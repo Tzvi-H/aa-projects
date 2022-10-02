@@ -35,6 +35,14 @@ app.get("/artists", (req, res) => {
   res.json(getAllArtists());
 });
 
+app.get("/artists/latest", (req, res) => {
+  res.json(getLatestArtist());
+});
+
+app.get("/artists/latest/albums", (req, res) => {
+  res.json(getAlbumsForLatestArtist());
+});
+
 app.post("/artists", (req, res) => {
   addArtist(req.body);
   res.status(201).json(req.body);
