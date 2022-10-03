@@ -1,8 +1,8 @@
 {
-  "name": "http-server-to-express-server",
+  "name": "server",
   "version": "1.0.0",
-  "description": "Converts an HTTP Server into an Express server",
-  "main": "app.js",
+  "description": "Explores request and response objects in Express",
+  "main": "index.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
