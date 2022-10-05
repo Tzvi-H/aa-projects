@@ -1,5 +1,6 @@
 const express = require("express");
 require("express-async-errors");
+const dogsRouter = require("./routes/dogs");
 const app = express();
 
 const { logger, unknownEndpoint } = require("./middleware");
@@ -7,8 +8,9 @@ const { logger, unknownEndpoint } = require("./middleware");
 app.use("/static", express.static("assets"));
 app.use(express.json());
 app.use(logger);
-
+app.use("/dogs", dogsRouter);
 // For testing purposes, GET /
+
 app.get("/", (req, res) => {
   res.json(
     "Express server running. No content provided at root level. Please use another route."
