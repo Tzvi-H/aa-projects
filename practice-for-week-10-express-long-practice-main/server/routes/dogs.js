@@ -88,7 +88,7 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", getAllDogs);
-router.get("/:dogId", getDogById);
+router.get("/:dogId", validateDogId, getDogById);
 router.post("/", validateDogInfo, createDog);
 router.put("/:dogId", validateDogId, updateDog);
 router.delete("/:dogId", validateDogId, deleteDog);

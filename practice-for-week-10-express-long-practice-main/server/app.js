@@ -1,9 +1,10 @@
+require("dotenv").config();
 const express = require("express");
 require("express-async-errors");
 const dogsRouter = require("./routes/dogs");
 const app = express();
 
-const { logger, unknownEndpoint } = require("./middleware");
+const { logger, unknownEndpoint, errorHandler } = require("./middleware");
 
 app.use("/static", express.static("assets"));
 app.use(express.json());
@@ -31,6 +32,7 @@ app.get("/test-error", async (req, res) => {
 });
 
 app.use(unknownEndpoint);
+app.use(errorHandler);
 
 const port = 5000;
 app.listen(port, () => console.log("Server is listening on port", port));

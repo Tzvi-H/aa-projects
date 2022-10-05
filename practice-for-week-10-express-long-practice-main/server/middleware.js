@@ -15,4 +15,23 @@ const unknownEndpoint = (req, res, next) => {
   throw error;
 };
 
-module.exports = { logger, unknownEndpoint };
+const errorHandler = (error, req, res, next) => {
+  console.error(error);
+
+  const statusCode = error.statusCode || 500;
+
+  res.status(statusCode);
+
+  const jsonResponse = {
+    message: error.message,
+    statusCode,
+  };
+
+  if (process.env.environment !== "production") {
+    jsonResponse.stack = error.stack;
+  }
+
+  res.json(jsonResponse);
+};
+
+module.exports = { logger, unknownEndpoint, errorHandler };
