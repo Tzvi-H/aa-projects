@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS customers;
 
 CREATE TABLE customers (
     id INTEGER PRIMARY KEY,
-    full_name VARCHAR(40) NOT NULL,
+    name VARCHAR(40) NOT NULL,
     phone NUMERIC(10, 0) UNIQUE,
     email VARCHAR(255) UNIQUE,
     points INTEGER DEFAULT 5 NOT NULL,
