@@ -62,3 +62,6 @@ INSERT INTO coffee_orders DEFAULT VALUES;
 INSERT INTO coffee_orders DEFAULT VALUES;
 INSERT INTO coffee_orders DEFAULT VALUES;
 INSERT INTO coffee_orders DEFAULT VALUES;
+
+-- 6
+SELECT points FROM customers WHERE name = 'Monica';
