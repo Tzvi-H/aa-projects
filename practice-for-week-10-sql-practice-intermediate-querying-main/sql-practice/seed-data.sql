@@ -20,4 +20,6 @@ VALUES ('The Falling Box', 1, 2015, 25000),
   ('The King River', 5, 2017, 85000),
   ('Under Water', 5, 2020, 106000),
   ('Another Fork', 5, 2021, 140000);
-  
+
+.mode column
+.headers on
