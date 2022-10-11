@@ -74,3 +74,48 @@ VALUES
 UPDATE performance_reviews
 SET score = 9
 WHERE employee_id = 2;
+
+UPDATE performance_reviews
+SET score = 9.3
+WHERE employee_id = 3;
+
+UPDATE employees
+SET role = "Assistant Regional Manager"
+WHERE first_name = "Jim"
+AND last_name = 'Halpert';
+
+UPDATE employees
+SET
+department = "Sales",
+role = "Sales Representative"
+WHERE first_name = "Ryan"
+AND last_name = 'Howard';
+
+INSERT INTO office_parties
+(budget, onsite)
+VALUES
+(200, true);
+
+INSERT INTO romantic_relationships
+(employee_id_1, employee_id_2)
+VALUES
+(2, 6);
+
+UPDATE performance_reviews
+SET score = 6.2
+WHERE employee_id = 6;
+
+INSERT INTO romantic_relationships
+(employee_id_1, employee_id_2)
+VALUES
+(5, 8);
+
+INSERT INTO office_parties
+(budget, onsite)
+VALUES
+(50, true);
+
+delete from performance_reviews where employee_id = 3;
+delete from employees where id = 3;
+
+delete from romantic_relationships where employee_id_1 in (select id from employees where first_name = 'Roy' or first_name = 'Pam');
