@@ -64,3 +64,9 @@ VALUES (1, 1),
 
 .mode column
 .headers on
+
+SELECT musicians.first_name, musicians.last_name
+FROM musician_instruments
+JOIN musicians on musicians.id = musician_instruments.musician_id
+JOIN instruments on instruments.id = musician_instruments.instrument_id
+WHERE instruments.type = 'piano';
