@@ -1,3 +1,7 @@
 .active {
   font-weight: bold;
 }
+
+a {
+  padding: 4px;
+}
