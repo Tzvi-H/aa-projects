@@ -17,6 +17,23 @@ CREATE TABLE toys (
   FOREIGN KEY (cat_id) REFERENCES cats(id) ON DELETE CASCADE
 );
 
+-- Create/recreate BONUS tables
+DROP TABLE IF EXISTS toys_backup;
+DROP TABLE IF EXISTS cats_backup;
+
+CREATE TABLE cats_backup (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT,
+  birth_year INTEGER
+);
+
+CREATE TABLE toys_backup (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT,
+  cat_id INTEGER,
+  FOREIGN KEY (cat_id) REFERENCES cats_backup(id) ON DELETE CASCADE
+);
+
 -- Seed Data
 INSERT INTO cats
   (name, birth_year)

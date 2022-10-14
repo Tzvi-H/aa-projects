@@ -1,6 +1,6 @@
-# Practice: SQL Aggregate Functions
+# Practice: SQL Subqueries
 
-In this project, you will be executing SQL commands with aggregate functions.
+In this practice, you will be executing SQL commands with at least one subquery.
 
 ## Set up
 
@@ -12,10 +12,10 @@ Execute the file __build-db.sql__ in the terminal to build the database,
 and populate it with seed data.
 
 ```shell
-sqlite3 dev.db ".read build-db.sql"
+sqlite3 example.db ".read build-db.sql"
 ```
 
-In the _sql-practice_ folder, create a file called _aggregates.sql_ to hold your
+In the _sql-practice_ folder, create a file called _subqueries.sql_ to hold your
 work. Run the file on the created database to complete the phases below.
 
 ## Prepare
@@ -49,20 +49,33 @@ Use a `JOIN` query to explore their relationship.
 
 Exit the `sqlite3` command line.
 
-## Step 1: `COUNT`
+## Phase 1: Replace `JOIN` query with subquery
 
-Write a query to determine the number of cats stored in the database.
+Write a JOIN query to get the list of toys belonging to Garfield.
 
-## Step 2: `MIN` / `MAX`
+Rewrite the JOIN query using a subquery instead.
 
-Write a query for the oldest cat, and the year it was born.
+## Phase 2: Dynamic `INSERT` using subquery
 
-Write a query for the youngest cat, and the year it was born.
+Give Garfield a new toy named "Pepperoni" using a subquery for Garfield's id.
 
-> Hint: Think about how birth_year relates to age.
+Verify the insertion worked using one of the queries above.
 
-Consider this... Can you query for both cats in one simple `SELECT`? (Spend only
-a minute or two. Writing a query may help.)
+<details>
+<summary>Tip #1</summary>
+If you place the <code>INSERT</code> between the <code>JOIN</code> query and the subquery, you'll "automatically" have before-and-after testing.
+</details>
+
+<details>
+<summary>Tip #2</summary>
+You can write additional text to the screen using <code>SELECT</code> to return a constant. (Research this online if you're not sure how to do it.)
+</details>
+
+<details>
+<summary>Tip #3</summary>
+You can put multiple <code>.read</code> commands in the same shell command for faster testing (e.g. rebuild from seed data followed by subqueries).
+<pre><code class="language-shell">sqlite3 example.db ".read build-db.sql" ".read subqueries.sql"</code></pre>
+</details>
 
 
 [cats-toys-db-schema]: https://appacademy-open-assets.s3.us-west-1.amazonaws.com/Modular-Curriculum/content/week-10/cats-toys-db-schema.png
