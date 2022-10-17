@@ -1,5 +1,5 @@
 {
-  "name": "combining-express-sequelize-short-practice",
+  "name": "combining-express-sql-short-practice",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -11,10 +11,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.1",
     "express": "^4.17.1",
-    "sequelize": "^6.25.2",
-    "sequelize-cli": "^6.5.1",
-    "sqlite3": "^5.1.2"
+    "sequelize": "^6.6.5",
+    "sequelize-cli": "^6.2.0",
+    "sqlite3": "^5.0.2"
   },
   "devDependencies": {
     "dotenv-cli": "^5.1.0",
