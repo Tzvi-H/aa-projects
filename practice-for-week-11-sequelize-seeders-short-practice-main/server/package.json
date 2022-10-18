@@ -5,8 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js",
-    "test": "DB_FILE=db/test.db node test.js"
+    "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
