@@ -8,7 +8,11 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.addColumn("cats", "age", Sequelize.FLOAT);
+    await queryInterface.addConstraint("Colors", {
+      fields: ["name"],
+      type: "unique",
+      name: "custom_unique_constraint_name",
+    });
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -18,6 +22,9 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.removeColumn("cats", "age");
+    await queryInterface.removeConstraint(
+      "Colors",
+      "custom_unique_constraint_name"
+    );
   },
 };
