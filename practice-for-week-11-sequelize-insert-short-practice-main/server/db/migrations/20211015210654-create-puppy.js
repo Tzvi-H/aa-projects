@@ -9,7 +9,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       age_yrs: {
         type: Sequelize.FLOAT
@@ -21,7 +22,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       microchipped: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,
