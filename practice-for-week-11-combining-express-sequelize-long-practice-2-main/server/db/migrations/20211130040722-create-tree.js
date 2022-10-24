@@ -1,29 +1,26 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Puppies', {
+    await queryInterface.createTable('Trees', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      age_yrs: {
-        type: Sequelize.FLOAT
-      },
-      breed: {
+      tree: {
+        allowNull: false,
+        unique: true,
         type: Sequelize.STRING
       },
-      weight_lbs: {
-        type: Sequelize.INTEGER
+      location: {
+        type: Sequelize.STRING
       },
-      microchipped: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
+      heightFt: {
+        type: Sequelize.FLOAT
+      },
+      groundCircumferenceFt: {
+        type: Sequelize.FLOAT
       },
       createdAt: {
         allowNull: false,
@@ -38,6 +35,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Puppies');
+    await queryInterface.dropTable('Trees');
   }
 };
