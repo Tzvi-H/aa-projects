@@ -60,10 +60,16 @@ router.get("/insects-trees", async (req, res, next) => {
   });
   for (let i = 0; i < insects.length; i++) {
     const insect = insects[i];
+    const trees = await insect.getTrees({
+      attributes: ["id", "tree"],
+      order: [["tree"]],
+      joinTableAttributes: [],
+    });
     payload.push({
       id: insect.id,
       name: insect.name,
       description: insect.description,
+      trees,
     });
   }
 
