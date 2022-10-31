@@ -7,13 +7,13 @@ module.exports = {
     typeValidation: true,
 
     // STEP #0a: Configure Benchmarking
-
+    benchmark: true,
     // Your code here
   },
   test: {
     storage: process.env.DB_TEST_FILE,
     dialect: "sqlite",
     seederStorage: "sequelize",
-    logging: false
+    logging: false,
   },
 };
