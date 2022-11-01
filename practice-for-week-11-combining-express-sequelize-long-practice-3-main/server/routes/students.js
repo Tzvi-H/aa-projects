@@ -4,7 +4,8 @@ const router = express.Router();
 
 // Import model(s)
 const { Student } = require("../db/models");
-const { Op } = require("sequelize");
+const sequelize = require("sequelize");
+const Op = sequelize.Op;
 
 // List
 router.get("/", async (req, res, next) => {
@@ -94,7 +95,6 @@ router.get("/", async (req, res, next) => {
   // Phase 3A: Include total number of results returned from the query without
   // limits and offsets as a property of count on the result
   // Note: This should be a new query
-
   result.rows = await Student.findAll({
     attributes: ["id", "firstName", "lastName", "leftHanded"],
     where,
@@ -105,6 +105,12 @@ router.get("/", async (req, res, next) => {
     limit,
     offset,
   });
+
+  result.count = await Student.count({
+    where,
+  });
+
+  result.pageCount = Math.ceil(result.count / limit);
 
   // Phase 2E: Include the page number as a key of page in the response data
   // In the special case (page=0, size=0) that returns all students, set
