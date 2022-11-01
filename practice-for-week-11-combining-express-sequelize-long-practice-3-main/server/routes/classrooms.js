@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 // Import model(s)
-const { Classroom } = require("../db/models");
+const { Classroom, Supply, StudentClassroom } = require("../db/models");
 const { Op } = require("sequelize");
 
 // List of classrooms
@@ -52,6 +52,7 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   let classroom = await Classroom.findByPk(req.params.id, {
     attributes: ["id", "name", "studentLimit"],
+
     // Phase 7:
     // Include classroom supplies and order supplies by category then
     // name (both in ascending order)
@@ -69,11 +70,23 @@ router.get("/:id", async (req, res, next) => {
   // Phase 5: Supply and Student counts, Overloaded classroom
   // Phase 5A: Find the number of supplies the classroom has and set it as
   // a property of supplyCount on the response
+  classroom.supplyCount = await Supply.count({
+    where: {
+      classroomId: req.params.id,
+    },
+  });
   // Phase 5B: Find the number of students in the classroom and set it as
   // a property of studentCount on the response
+  classroom.studentCount = await StudentClassroom.count({
+    where: {
+      classroomId: req.params.id,
+    },
+  });
+
   // Phase 5C: Calculate if the classroom is overloaded by comparing the
   // studentLimit of the classroom to the number of students in the
   // classroom
+  classroom.overloaded = classroom.studentCount > classroom.studentLimit;
   // Optional Phase 5D: Calculate the average grade of the classroom
   // Your code here
 
