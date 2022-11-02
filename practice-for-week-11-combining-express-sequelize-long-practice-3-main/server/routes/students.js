@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 // Import model(s)
-const { Student } = require("../db/models");
+const { Student, Classroom, StudentClassroom } = require("../db/models");
 const sequelize = require("sequelize");
 const Op = sequelize.Op;
 
@@ -121,9 +121,17 @@ router.get("/", async (req, res, next) => {
     order: [
       ["lastName", "ASC"],
       ["firstName", "ASC"],
+      [Classroom, StudentClassroom, "grade", "DESC"],
     ],
     limit,
     offset,
+    include: {
+      model: Classroom,
+      attributes: ["id", "name"],
+      through: {
+        attributes: ["grade"],
+      },
+    },
   });
 
   result.count = await Student.count({
